@@ -25,7 +25,9 @@ def csv_to_json():
 
     try:
     # connect to the PostgreSQL server
-        conn = psycopg2.connect(host="ec2-54-204-99-176.compute-1.amazonaws.com",database="d1m8qisg5a9i1t", user="zbrqxkwnzsxgmt", password="1aa020dc99d5dd285c2bcc96ac0288d08416b0f35891914344afc08c2e567def")
+        conn = psycopg2.connect(host="ls-307adacedc16a9e28dce05e1e88326e3e47fbf8e.c3qcn9i1zazu.ap-southeast-1.rds.amazonaws.com",
+                                database="data_sap", user="dbmasteruser", 
+                                password="KPTt2NW*nfHwhwA3;!5n9?zp&J:<puag")
         # create a cursor
         cur = conn.cursor()
         # Execute a sql
@@ -40,8 +42,8 @@ def csv_to_json():
                 date = datetime.strptime(str(i[2]), '%Y-%m-%d')
       
                 date = time.mktime((date).timetuple())
-                dic_va["invoice_code"] = "invoice" + " " + i[0] +""
-                dic_va["invoice_date"] = str((date))
+                dic_va["invoice_code"] = "Số invoice" + " " + i[0] +""
+                dic_va["invoice_date"] = str(int((date)))
                 dic[i[1]] = [dic_va]
  
                 
