@@ -55,8 +55,8 @@ def csv_to_json():
     finally:
         if conn is not None:
             conn.close()
-
-    return  dic
+    json1 = json.dumps(dic)
+    return  json1
  
 if __name__ == '__main__':
     app.run(host="0.0.0.0")
