@@ -17,7 +17,7 @@ app.config["DEBUG"] = True
 APP_ROOT = os.path.dirname(__file__)
 
 # app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-@app.route('/get-invoice', methods=['GET','POST'])
+@app.route('/get-invoice', methods=['POST'])
 
 def csv_to_json():
     data = request.json
@@ -42,7 +42,7 @@ def csv_to_json():
                 date = datetime.strptime(str(i[2]), '%Y-%m-%d')
       
                 date = time.mktime((date).timetuple())
-                dic_va["invoice_code"] = "Số invoice" + " " + i[0] +""
+                dic_va["invoice_code"] =i[0]
                 dic_va["invoice_date"] = str(int((date)))
                 dic[i[1]] = [dic_va]
  
@@ -55,8 +55,10 @@ def csv_to_json():
     finally:
         if conn is not None:
             conn.close()
-    json1 = json.dumps(dic)
-    return  json1
+    # json1 = (json.dumps(dic))
+    json1 = (jsonify(dic))
+    # json1.headers["Content-Type"] = "application/json; charset=utf-8"
+    return  (json1)
  
 if __name__ == '__main__':
     app.run(host="0.0.0.0")
